@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kayanzify • Spotify Insights</title>
+    <style>
+      html,
+      body {
+        min-height: 100%;
+      }
+      :root {
+        --bg-a: #fff7ed;
+        --bg-b: #ecfeff;
+        --text: #1f2937;
+        --muted: #4b5563;
+        --surface: #ffffff;
+        --surface-soft: #fffdf7;
+        --border: #cfe2ff;
+        --brand: #db2777;
+        --brand-2: #2563eb;
+        --green-soft: #effef4;
+        --green-border: #9be8b4;
+        --tab-active-bg: #ffe4f1;
+        --tab-active-border: #f9a8d4;
+      }
+      [data-theme="dark"] {
+        --bg-a: #2a1b4a;
+        --bg-b: #11365c;
+        --text: #f8fafc;
+        --muted: #d1d5db;
+        --surface: #1f2540;
+        --surface-soft: #252b4a;
+        --border: #4b5c8a;
+        --brand: #f9a8d4;
+        --brand-2: #93c5fd;
+        --green-soft: #1f3a2d;
+        --green-border: #5faa88;
+        --tab-active-bg: #3a2f63;
+        --tab-active-border: #a78bfa;
+      }
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        margin: 0;
+        padding: 28px 16px;
+        line-height: 1.5;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 12% 12%, rgba(253, 186, 116, 0.35), transparent 36%),
+          radial-gradient(circle at 88% 18%, rgba(96, 165, 250, 0.30), transparent 34%),
+          radial-gradient(circle at 50% 100%, rgba(244, 114, 182, 0.22), transparent 40%),
+          linear-gradient(135deg, var(--bg-a), var(--bg-b));
+        transition: background 0.25s ease, color 0.25s ease;
+      }
+      .app-shell {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .page-header {
+        margin-bottom: 14px;
+      }
+      .brand-title {
+        margin: 0;
+        font-size: clamp(28px, 5vw, 42px);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        font-weight: 800;
+        background: linear-gradient(90deg, #7c3aed, #ec4899 55%, #f97316);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .brand-subtitle {
+        margin: 6px 0 0 0;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .control-groups {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      .group {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px;
+        background: var(--surface);
+        box-shadow: 0 6px 18px rgba(51, 65, 85, 0.08);
+        transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+      .group.session {
+        border-color: var(--green-border);
+        background: var(--green-soft);
+      }
+      .group.session .group-title {
+        color: #1f6a45;
+      }
+      .group-title {
+        margin: 0 0 8px 0;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+      .title-icon {
+        margin-right: 6px;
+      }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .filters {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 8px;
+      }
+      button {
+        padding: 10px 14px;
+        border: 1px solid #f9a8d4;
+        border-radius: 8px;
+        cursor: pointer;
+        background: linear-gradient(180deg, #ffffff, #ffe4f1);
+        color: #7e22ce;
+        font-weight: 600;
+        transition: all 0.25s ease;
+      }
+      [data-theme="dark"] button {
+        border-color: #7c88b8;
+        background: linear-gradient(180deg, #2f3863, #222a4a);
+        color: #fce7f3;
+      }
+      button:hover {
+        border-color: #db2777;
+        background: linear-gradient(180deg, #fff1f8, #ffd4ec);
+        transform: translateY(-1px);
+      }
+      [data-theme="dark"] button:hover {
+        border-color: #4b5563;
+        background: linear-gradient(180deg, #243041, #172033);
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      select {
+        padding: 8px;
+        border: 1px solid #f9a8d4;
+        border-radius: 8px;
+        background: #fff;
+        color: var(--text);
+        transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+      }
+      [data-theme="dark"] select {
+        border-color: #374151;
+        background: #111827;
+      }
+      .panel {
+        background: var(--surface-soft);
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        box-shadow: 0 6px 18px rgba(30, 58, 138, 0.08);
+        transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+      .result-title {
+        margin: 0 0 8px 0;
+        font-size: 18px;
+        color: var(--brand);
+      }
+      .result-subtitle {
+        margin: 0 0 12px 0;
+        color: var(--muted);
+      }
+      .result-list {
+        margin: 0;
+        padding-left: 20px;
+      }
+      .result-list li {
+        margin: 6px 0;
+      }
+      .profile-hero {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      .profile-avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #bfdbfe;
+        background: #e0e7ff;
+      }
+      .profile-avatar.placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: #3730a3;
+        background: linear-gradient(135deg, #ddd6fe, #bfdbfe);
+      }
+      .profile-name {
+        margin: 0;
+        font-size: 20px;
+      }
+      .profile-links {
+        margin: 6px 0 0 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .profile-links a {
+        color: var(--brand-2);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      [data-theme="dark"] .profile-links a {
+        color: #93c5fd;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 12px 0;
+      }
+      .badge {
+        background: #fff1f8;
+        border: 1px solid #f9a8d4;
+        border-radius: 999px;
+        padding: 4px 10px;
+        font-size: 13px;
+        color: #831843;
+        transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+      }
+      .profile-actions {
+        margin-top: 12px;
+      }
+      .skeleton {
+        background: linear-gradient(90deg, #ececec 25%, #f5f5f5 37%, #ececec 63%);
+        background-size: 400% 100%;
+        animation: shimmer 1.2s ease infinite;
+        border-radius: 8px;
+      }
+      .skeleton-avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+      }
+      .skeleton-line {
+        height: 12px;
+        margin: 8px 0;
+      }
+      @keyframes shimmer {
+        0% { background-position: 100% 0; }
+        100% { background-position: 0 0; }
+      }
+      .album-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .album-cover {
+        width: 44px;
+        height: 44px;
+        border-radius: 6px;
+        object-fit: cover;
+        border: 1px solid #c7d2fe;
+        background: #e0e7ff;
+      }
+      .tabs {
+        display: flex;
+        gap: 8px;
+        margin: 0;
+      }
+      .results-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 12px 0;
+        flex-wrap: wrap;
+      }
+      .results-controls .filters {
+        margin: 0;
+      }
+      .tab-btn {
+        background: #ffffff;
+      }
+      .tab-btn.active {
+        background: var(--tab-active-bg);
+        border-color: var(--tab-active-border);
+        color: var(--brand);
+      }
+      .muted {
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+    <header class="page-header">
+      <h1 class="brand-title">Kayanzify</h1>
+      <p class="brand-subtitle">Your colorful Spotify insights dashboard</p>
+    </header>
+
+    <div class="controls" style="justify-content: flex-end; margin-bottom: 10px;">
+      <button id="themeBtn" type="button">🌙 Dark Mode</button>
+    </div>
+
+    <div class="control-groups">
+      <section class="group session" aria-label="Session controls">
+        <p class="group-title"><span class="title-icon" aria-hidden="true">🔐</span>Session</p>
+        <div class="controls">
+          <button id="loginBtn">Login with Spotify</button>
+          <button id="logoutBtn" disabled>Logout</button>
+        </div>
+      </section>
+
+      <section class="group" aria-label="Profile controls">
+        <p class="group-title"><span class="title-icon" aria-hidden="true">👤</span>Profile</p>
+        <div class="controls">
+          <button id="meBtn" disabled>Get My Profile</button>
+        </div>
+      </section>
+    </div>
+
+    <p class="muted" id="status">Not logged in</p>
+    <div id="resultsControls" class="results-controls" hidden>
+      <div id="resultsTabs" class="tabs" hidden>
+        <button id="songsTabBtn" class="tab-btn" type="button">🎵 Songs</button>
+        <button id="artistsTabBtn" class="tab-btn" type="button">🎤 Artists</button>
+        <button id="albumsTabBtn" class="tab-btn" type="button">💿 Albums</button>
+      </div>
+      <div class="filters" aria-label="Results time range">
+        <label for="timeRangeSelect">Time range:</label>
+        <select id="timeRangeSelect">
+          <option value="short_term">Last 4 weeks</option>
+          <option value="medium_term" selected>Last 6 months</option>
+          <option value="long_term">All time</option>
+        </select>
+      </div>
+    </div>
+    <div id="output" class="panel muted">Choose an action to load data.</div>
+
+    <script type="module" src="main.js"></script>
+    </div>
+  </body>
+</html>
