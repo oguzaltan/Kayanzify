@@ -1,6 +1,5 @@
 import {
   API_ALBUMS_BASE,
-  API_ARTISTS_BASE,
   API_ME,
   API_TOP_ARTISTS_BASE,
   API_TOP_TRACKS_BASE,
@@ -44,7 +43,7 @@ let loadedTopTimeRange = null;
 let isLoadingTopData = false;
 let statusClearTimer = null;
 
-onClick(loginBtn, () =>
+loginBtn?.addEventListener("click", () =>
   startLogin({
     clientId: CLIENT_ID,
     redirectUri: REDIRECT_URI,
@@ -53,13 +52,13 @@ onClick(loginBtn, () =>
     setStatus,
   })
 );
-onClick(meBtn, loadProfile);
-onClick(logoutBtn, logout);
-onClick(themeBtn, () => toggleTheme(themeBtn));
-onClick(songsTabBtn, () => setActiveResultsTab("songs"));
-onClick(artistsTabBtn, () => setActiveResultsTab("artists"));
-onClick(albumsTabBtn, () => setActiveResultsTab("albums"));
-onChange(timeRangeSelect, handleTimeRangeChange);
+meBtn?.addEventListener("click", loadProfile);
+logoutBtn?.addEventListener("click", logout);
+themeBtn?.addEventListener("click", () => toggleTheme(themeBtn));
+songsTabBtn?.addEventListener("click", () => setActiveResultsTab("songs"));
+artistsTabBtn?.addEventListener("click", () => setActiveResultsTab("artists"));
+albumsTabBtn?.addEventListener("click", () => setActiveResultsTab("albums"));
+timeRangeSelect?.addEventListener("change", handleTimeRangeChange);
 
 init();
 
@@ -147,17 +146,16 @@ async function loadTop10() {
   isLoadingTopData = true;
 
   try {
-    const { topSongs, topArtists, topAlbums, artistDebug } = await fetchTop10Bundle({
+    const { topSongs, topArtists, topAlbums } = await fetchTop10Bundle({
       token,
       timeRange,
       apiTopTracksBase: API_TOP_TRACKS_BASE,
       apiTopArtistsBase: API_TOP_ARTISTS_BASE,
-      apiArtistsBase: API_ARTISTS_BASE,
       apiAlbumsBase: API_ALBUMS_BASE,
     });
 
     songsResult = { items: topSongs, timeRangeLabel };
-    artistsResult = { items: topArtists, timeRangeLabel, debug: artistDebug };
+    artistsResult = { items: topArtists, timeRangeLabel };
     albumsResult = { items: topAlbums, timeRangeLabel };
     loadedTopTimeRange = timeRange;
     if (!["songs", "artists", "albums"].includes(activeResultsTab)) {
@@ -211,7 +209,6 @@ function logout() {
 }
 
 function setAuthButtonState(isAuthenticated) {
-  if (loginBtn) loginBtn.disabled = false;
   if (meBtn) meBtn.disabled = !isAuthenticated;
   if (logoutBtn) logoutBtn.disabled = !isAuthenticated;
   if (timeRangeSelect) timeRangeSelect.disabled = !isAuthenticated;
@@ -265,7 +262,7 @@ function renderProfile(profile, refreshedAt = new Date()) {
     </div>
   `;
 
-  onClick(document.getElementById("copyProfileJsonBtn"), copyProfileJson);
+  document.getElementById("copyProfileJsonBtn")?.addEventListener("click", copyProfileJson);
 }
 
 function renderProfileLoading() {
@@ -320,29 +317,18 @@ function renderTopSongs(topSongs, timeRangeLabel) {
     )
     .join("");
 
-  outputEl.classList.remove("muted");
-  outputEl.innerHTML = `
-    <h2 class="result-title">🎵 Top 10 Songs</h2>
-    <p class="result-subtitle">Time range: ${escapeHtml(timeRangeLabel)}</p>
-    <ol class="result-list">${items}</ol>
-  `;
+  renderResultList("🎵 Top 10 Songs", timeRangeLabel, items);
 }
 
-function renderTopArtists(topArtists, timeRangeLabel, artistDebug) {
+function renderTopArtists(topArtists, timeRangeLabel) {
   const items = topArtists
     .map(
       (artist) =>
-        `<li><div class="album-row">${artist.imageUrl ? `<img class="album-cover" src="${escapeHtml(artist.imageUrl)}" alt="${escapeHtml(artist.name)} image" />` : `<div class="album-cover" aria-hidden="true"></div>`}<div><strong>#${artist.rank}</strong> ${escapeHtml(artist.name)}<br /><span class="muted">Followers: ${escapeHtml(formatNumber(artist.followers))}</span><br /><span class="muted">Genres: ${escapeHtml(artist.genres?.length ? artist.genres.join(", ") : "Not available")}</span>${artist.spotifyUrl ? `<br /><a href="${escapeHtml(artist.spotifyUrl)}" target="_blank" rel="noreferrer">Open in Spotify</a>` : ""}</div></div></li>`
+        `<li><div class="album-row">${artist.imageUrl ? `<img class="album-cover" src="${escapeHtml(artist.imageUrl)}" alt="${escapeHtml(artist.name)} image" />` : `<div class="album-cover" aria-hidden="true"></div>`}<div><strong>#${artist.rank}</strong> ${escapeHtml(artist.name)}</div></div></li>`
     )
     .join("");
 
-  outputEl.classList.remove("muted");
-  outputEl.innerHTML = `
-    <h2 class="result-title">🎤 Top 10 Artists</h2>
-    <p class="result-subtitle">Time range: ${escapeHtml(timeRangeLabel)}</p>
-    ${renderArtistDebug(artistDebug)}
-    <ol class="result-list">${items}</ol>
-  `;
+  renderResultList("🎤 Top 10 Artists", timeRangeLabel, items);
 }
 
 function renderTopAlbums(topAlbums, timeRangeLabel) {
@@ -363,12 +349,7 @@ function renderTopAlbums(topAlbums, timeRangeLabel) {
     )
     .join("");
 
-  outputEl.classList.remove("muted");
-  outputEl.innerHTML = `
-    <h2 class="result-title">💿 Top 10 Albums</h2>
-    <p class="result-subtitle">Time range: ${escapeHtml(timeRangeLabel)}</p>
-    <ol class="result-list">${items}</ol>
-  `;
+  renderResultList("💿 Top 10 Albums", timeRangeLabel, items);
 }
 
 function renderResultsTab() {
@@ -389,7 +370,7 @@ function renderResultsTab() {
 
   if (activeResultsTab === "artists") {
     if (artistsResult) {
-      renderTopArtists(artistsResult.items, artistsResult.timeRangeLabel, artistsResult.debug);
+      renderTopArtists(artistsResult.items, artistsResult.timeRangeLabel);
     } else {
       renderUnavailable("Artists");
     }
@@ -410,18 +391,13 @@ function renderResultsTab() {
 
 function setActiveResultsTab(tabName) {
   activeResultsTab = tabName;
-  if (shouldLoadTopData()) {
+  const selectedRange = getSelectedTimeRange();
+  const hasData = !!songsResult && !!artistsResult && !!albumsResult;
+  if (!hasData || loadedTopTimeRange !== selectedRange) {
     loadTop10();
     return;
   }
   renderResultsTab();
-}
-
-function shouldLoadTopData() {
-  const selectedRange = getSelectedTimeRange();
-  const hasData = !!songsResult && !!artistsResult && !!albumsResult;
-  if (!hasData) return true;
-  return loadedTopTimeRange !== selectedRange;
 }
 
 function showResultsTabs() {
@@ -432,14 +408,6 @@ function showResultsTabs() {
 function hideResultsTabs() {
   if (!resultsTabsEl) return;
   resultsTabsEl.hidden = true;
-}
-
-function onClick(element, handler) {
-  if (element) element.addEventListener("click", handler);
-}
-
-function onChange(element, handler) {
-  if (element) element.addEventListener("change", handler);
 }
 
 function handleTimeRangeChange() {
@@ -458,18 +426,7 @@ function renderUnavailable(sectionName) {
   outputEl.textContent = `${sectionName} data is not loaded yet.`;
 }
 
-function renderArtistDebug(debug) {
-  if (!debug) return "";
-
-  const text = `Artist details check — source: ${debug.source || "single"}, attempted: ${debug.attempted}, succeeded: ${debug.succeeded}, failed: ${debug.failed}, with followers: ${debug.withFollowers}, with genres: ${debug.withGenres}${debug.reason ? ` · sample error: ${debug.reason}` : ""}`;
-  return `<p class="muted">${escapeHtml(text)}</p>`;
-}
-
-function setStatus(message, options) {
-  setStatusWithOptions(message, options);
-}
-
-function setStatusWithOptions(message, { ephemeral = false, durationMs = 2500 } = {}) {
+function setStatus(message, { ephemeral = false, durationMs = 2500 } = {}) {
   statusEl.textContent = message;
 
   if (statusClearTimer) {
@@ -486,4 +443,13 @@ function setStatusWithOptions(message, { ephemeral = false, durationMs = 2500 } 
     }
     statusClearTimer = null;
   }, durationMs);
+}
+
+function renderResultList(title, timeRangeLabel, items) {
+  outputEl.classList.remove("muted");
+  outputEl.innerHTML = `
+    <h2 class="result-title">${title}</h2>
+    <p class="result-subtitle">Time range: ${escapeHtml(timeRangeLabel)}</p>
+    <ol class="result-list">${items}</ol>
+  `;
 }
