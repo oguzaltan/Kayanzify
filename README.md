@@ -6,8 +6,7 @@ Current features:
 
 - Login with Spotify
 - View your profile (`GET /v1/me`)
-- Load Top 10 Songs, Artists, and Albums from tabs
-- Switch between Songs, Artists, and Albums using tabs
+- Switch between Songs, Artists, and Albums tabs (auto-loads Top 10 for selected time range)
 - Albums tab uses Spotify albums data (cover image + release date)
 - Change time range (`short_term`, `medium_term`, `long_term`)
 
@@ -53,6 +52,12 @@ Then open:
 - `theme.js` — Light/dark mode behavior
 - `utils.js` — Shared formatting and utility helpers
 - `README.md` — Setup and usage guide
+
+## Cleanup notes
+
+- Legacy monolithic file (`app.js`) has been removed.
+- Tab handling now uses explicit button listeners only (no legacy fallback IDs).
+- Visibility is controlled via the `hidden` attribute for results sections.
 
 ## 4) Test flow
 

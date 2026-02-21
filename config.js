@@ -7,6 +7,7 @@ export const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 export const API_ME = "https://api.spotify.com/v1/me";
 export const API_TOP_TRACKS_BASE = "https://api.spotify.com/v1/me/top/tracks";
 export const API_TOP_ARTISTS_BASE = "https://api.spotify.com/v1/me/top/artists";
+export const API_ARTISTS_BASE = "https://api.spotify.com/v1/artists";
 export const API_ALBUMS_BASE = "https://api.spotify.com/v1/albums";
 
 export const TOP_LIMIT = 10;

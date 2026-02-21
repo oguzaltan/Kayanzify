@@ -10,34 +10,34 @@
         min-height: 100%;
       }
       :root {
-        --bg-a: #fff7ed;
-        --bg-b: #ecfeff;
+        --bg-a: #fff1cc;
+        --bg-b: #ffe4b5;
         --text: #1f2937;
         --muted: #4b5563;
         --surface: #ffffff;
         --surface-soft: #fffdf7;
-        --border: #cfe2ff;
-        --brand: #db2777;
-        --brand-2: #2563eb;
-        --green-soft: #effef4;
-        --green-border: #9be8b4;
-        --tab-active-bg: #ffe4f1;
-        --tab-active-border: #f9a8d4;
+        --border: #ffd39a;
+        --brand: #ff2d55;
+        --brand-2: #ff7a00;
+        --green-soft: #f5ffd8;
+        --green-border: #b6f56a;
+        --tab-active-bg: #fff0d6;
+        --tab-active-border: #ffb347;
       }
       [data-theme="dark"] {
-        --bg-a: #2a1b4a;
-        --bg-b: #11365c;
+        --bg-a: #4a130c;
+        --bg-b: #1a2f14;
         --text: #f8fafc;
         --muted: #d1d5db;
-        --surface: #1f2540;
-        --surface-soft: #252b4a;
-        --border: #4b5c8a;
-        --brand: #f9a8d4;
-        --brand-2: #93c5fd;
-        --green-soft: #1f3a2d;
-        --green-border: #5faa88;
-        --tab-active-bg: #3a2f63;
-        --tab-active-border: #a78bfa;
+        --surface: #2e1c18;
+        --surface-soft: #37231d;
+        --border: #7a4c2c;
+        --brand: #ff6b8a;
+        --brand-2: #ffae4f;
+        --green-soft: #23351c;
+        --green-border: #75b63e;
+        --tab-active-bg: #4a2f20;
+        --tab-active-border: #ff8a3d;
       }
       body {
         font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -46,9 +46,10 @@
         line-height: 1.5;
         color: var(--text);
         background:
-          radial-gradient(circle at 12% 12%, rgba(253, 186, 116, 0.35), transparent 36%),
-          radial-gradient(circle at 88% 18%, rgba(96, 165, 250, 0.30), transparent 34%),
-          radial-gradient(circle at 50% 100%, rgba(244, 114, 182, 0.22), transparent 40%),
+          radial-gradient(circle at 10% 10%, rgba(255, 122, 0, 0.48), transparent 38%),
+          radial-gradient(circle at 90% 16%, rgba(141, 251, 45, 0.44), transparent 36%),
+          radial-gradient(circle at 52% 102%, rgba(255, 45, 85, 0.38), transparent 42%),
+          radial-gradient(circle at 72% 72%, rgba(255, 214, 10, 0.28), transparent 34%),
           linear-gradient(135deg, var(--bg-a), var(--bg-b));
         transition: background 0.25s ease, color 0.25s ease;
       }
@@ -65,7 +66,7 @@
         line-height: 1.08;
         letter-spacing: -0.02em;
         font-weight: 800;
-        background: linear-gradient(90deg, #7c3aed, #ec4899 55%, #f97316);
+        background: linear-gradient(90deg, #ff2d55, #ff7a00 48%, #8dfb2d);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -86,7 +87,7 @@
         border-radius: 10px;
         padding: 10px;
         background: var(--surface);
-        box-shadow: 0 6px 18px rgba(51, 65, 85, 0.08);
+        box-shadow: 0 8px 20px rgba(255, 122, 0, 0.14);
         transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
       }
       .group.session {
@@ -94,7 +95,7 @@
         background: var(--green-soft);
       }
       .group.session .group-title {
-        color: #1f6a45;
+        color: #3f7f1c;
       }
       .group-title {
         margin: 0 0 8px 0;
@@ -102,6 +103,9 @@
         letter-spacing: 0.04em;
         color: var(--muted);
         text-transform: uppercase;
+      }
+      .session-status {
+        margin: 8px 0 0;
       }
       .title-icon {
         margin-right: 6px;
@@ -111,6 +115,10 @@
         flex-wrap: wrap;
         gap: 8px;
       }
+      .theme-controls {
+        justify-content: flex-end;
+        margin-bottom: 10px;
+      }
       .filters {
         display: flex;
         align-items: center;
@@ -119,27 +127,27 @@
       }
       button {
         padding: 10px 14px;
-        border: 1px solid #f9a8d4;
+        border: 1px solid #ffb347;
         border-radius: 8px;
         cursor: pointer;
-        background: linear-gradient(180deg, #ffffff, #ffe4f1);
-        color: #7e22ce;
+        background: linear-gradient(180deg, #ffffff, #fff0d6);
+        color: #a23b00;
         font-weight: 600;
         transition: all 0.25s ease;
       }
       [data-theme="dark"] button {
-        border-color: #7c88b8;
-        background: linear-gradient(180deg, #2f3863, #222a4a);
-        color: #fce7f3;
+        border-color: #9f5f30;
+        background: linear-gradient(180deg, #4a2d22, #3a2218);
+        color: #ffe4bf;
       }
       button:hover {
-        border-color: #db2777;
-        background: linear-gradient(180deg, #fff1f8, #ffd4ec);
+        border-color: #ff2d55;
+        background: linear-gradient(180deg, #fff7e6, #ffe0b8);
         transform: translateY(-1px);
       }
       [data-theme="dark"] button:hover {
-        border-color: #4b5563;
-        background: linear-gradient(180deg, #243041, #172033);
+        border-color: #ff8a3d;
+        background: linear-gradient(180deg, #593528, #41261b);
       }
       button:disabled {
         opacity: 0.6;
@@ -147,22 +155,22 @@
       }
       select {
         padding: 8px;
-        border: 1px solid #f9a8d4;
+        border: 1px solid #ffb347;
         border-radius: 8px;
-        background: #fff;
+        background: #fffaf0;
         color: var(--text);
         transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
       }
       [data-theme="dark"] select {
-        border-color: #374151;
-        background: #111827;
+        border-color: #9f5f30;
+        background: #332118;
       }
       .panel {
         background: var(--surface-soft);
         padding: 12px;
         border-radius: 8px;
         border: 1px solid var(--border);
-        box-shadow: 0 6px 18px rgba(30, 58, 138, 0.08);
+        box-shadow: 0 8px 20px rgba(255, 69, 0, 0.12);
         transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
       }
       .result-title {
@@ -192,16 +200,16 @@
         height: 72px;
         border-radius: 50%;
         object-fit: cover;
-        border: 2px solid #bfdbfe;
-        background: #e0e7ff;
+        border: 2px solid #ffb347;
+        background: #ffe8c9;
       }
       .profile-avatar.placeholder {
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 700;
-        color: #3730a3;
-        background: linear-gradient(135deg, #ddd6fe, #bfdbfe);
+        color: #9a3412;
+        background: linear-gradient(135deg, #ffe0b2, #ffb347);
       }
       .profile-name {
         margin: 0;
@@ -218,9 +226,6 @@
         text-decoration: none;
         font-weight: 600;
       }
-      [data-theme="dark"] .profile-links a {
-        color: #93c5fd;
-      }
       .badges {
         display: flex;
         flex-wrap: wrap;
@@ -228,12 +233,12 @@
         margin: 12px 0;
       }
       .badge {
-        background: #fff1f8;
-        border: 1px solid #f9a8d4;
+        background: #fff2de;
+        border: 1px solid #ffb347;
         border-radius: 999px;
         padding: 4px 10px;
         font-size: 13px;
-        color: #831843;
+        color: #9a3412;
         transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
       }
       .profile-actions {
@@ -268,8 +273,8 @@
         height: 44px;
         border-radius: 6px;
         object-fit: cover;
-        border: 1px solid #c7d2fe;
-        background: #e0e7ff;
+        border: 1px solid #ffd39a;
+        background: #ffe8c9;
       }
       .tabs {
         display: flex;
@@ -288,7 +293,7 @@
         margin: 0;
       }
       .tab-btn {
-        background: #ffffff;
+        background: #fff8ea;
       }
       .tab-btn.active {
         background: var(--tab-active-bg);
@@ -307,7 +312,7 @@
       <p class="brand-subtitle">Your colorful Spotify insights dashboard</p>
     </header>
 
-    <div class="controls" style="justify-content: flex-end; margin-bottom: 10px;">
+    <div class="controls theme-controls">
       <button id="themeBtn" type="button">🌙 Dark Mode</button>
     </div>
 
@@ -318,6 +323,7 @@
           <button id="loginBtn">Login with Spotify</button>
           <button id="logoutBtn" disabled>Logout</button>
         </div>
+        <p class="muted session-status" id="status">Not logged in</p>
       </section>
 
       <section class="group" aria-label="Profile controls">
@@ -328,7 +334,6 @@
       </section>
     </div>
 
-    <p class="muted" id="status">Not logged in</p>
     <div id="resultsControls" class="results-controls" hidden>
       <div id="resultsTabs" class="tabs" hidden>
         <button id="songsTabBtn" class="tab-btn" type="button">🎵 Songs</button>

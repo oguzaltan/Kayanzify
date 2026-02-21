@@ -4,7 +4,14 @@ export async function fetchProfile(token, apiMe) {
   return fetchTopData(token, apiMe, "Profile request failed.");
 }
 
-export async function fetchTop10Bundle({ token, timeRange, apiTopTracksBase, apiTopArtistsBase, apiAlbumsBase }) {
+export async function fetchTop10Bundle({
+  token,
+  timeRange,
+  apiTopTracksBase,
+  apiTopArtistsBase,
+  apiArtistsBase,
+  apiAlbumsBase,
+}) {
   const tracksEndpoint = `${apiTopTracksBase}?limit=${ALBUM_SOURCE_TRACK_LIMIT}&time_range=${timeRange}`;
   const artistsEndpoint = `${apiTopArtistsBase}?limit=${TOP_LIMIT}&time_range=${timeRange}`;
 
@@ -28,14 +35,130 @@ export async function fetchTop10Bundle({ token, timeRange, apiTopTracksBase, api
     }
   }
 
+  const { items: enrichedArtistItems, debug: artistDebug } = await enrichArtistsData(
+    token,
+    artistsData,
+    apiArtistsBase
+  );
+
   const topSongs = mapTopSongs(tracksData);
-  const topArtists = mapTopArtists(artistsData);
+  const topArtists = mapTopArtists({ items: enrichedArtistItems });
   let topAlbums = mapTopAlbums(albumsData);
   if (!topAlbums.length) {
     topAlbums = mapTopAlbumsFromTracks(tracksData);
   }
 
-  return { topSongs, topArtists, topAlbums };
+  return { topSongs, topArtists, topAlbums, artistDebug };
+}
+
+async function enrichArtistsData(token, artistsData, apiArtistsBase) {
+  const baseItems = (artistsData.items || []).slice(0, TOP_LIMIT);
+  const ids = baseItems.map((artist) => artist.id).filter(Boolean);
+
+  if (!ids.length || !apiArtistsBase) {
+    return {
+      items: baseItems,
+      debug: {
+        attempted: ids.length,
+        succeeded: 0,
+        failed: 0,
+        withFollowers: 0,
+        withGenres: 0,
+        reason: "No artist IDs or artists endpoint missing",
+      },
+    };
+  }
+
+  try {
+    const detailResults = await Promise.allSettled(
+      ids.map((id) =>
+        fetchTopData(token, `${apiArtistsBase}/${id}`, `Artist details request failed for ${id}.`)
+      )
+    );
+
+    const fulfilled = detailResults.filter((result) => result.status === "fulfilled");
+    const rejected = detailResults.filter((result) => result.status === "rejected");
+    let detailsById = new Map(
+      fulfilled
+        .filter((result) => result.value?.id)
+        .map((result) => [result.value.id, result.value])
+    );
+
+    let source = "single";
+
+    let mergedItems = mergeArtistDetails(baseItems, detailsById);
+    let withFollowers = mergedItems.filter(
+      (artist) => typeof artist.followers?.total === "number" || typeof artist.followers === "number"
+    ).length;
+    let withGenres = mergedItems.filter((artist) => Array.isArray(artist.genres) && artist.genres.length > 0).length;
+
+    if ((withFollowers === 0 || withGenres === 0) && ids.length) {
+      try {
+        const severalData = await fetchTopData(
+          token,
+          `${apiArtistsBase}?ids=${ids.join(",")}`,
+          "Get several artists request failed."
+        );
+        const severalById = new Map((severalData.artists || []).map((artist) => [artist.id, artist]));
+        const mergedFromSeveral = mergeArtistDetails(baseItems, severalById);
+        const severalFollowers = mergedFromSeveral.filter(
+          (artist) => typeof artist.followers?.total === "number" || typeof artist.followers === "number"
+        ).length;
+        const severalGenres = mergedFromSeveral.filter(
+          (artist) => Array.isArray(artist.genres) && artist.genres.length > 0
+        ).length;
+
+        if (severalFollowers > withFollowers || severalGenres > withGenres) {
+          detailsById = severalById;
+          mergedItems = mergedFromSeveral;
+          withFollowers = severalFollowers;
+          withGenres = severalGenres;
+          source = "several";
+        }
+      } catch {
+      }
+    }
+
+    return {
+      items: mergedItems,
+      debug: {
+        attempted: ids.length,
+        succeeded: fulfilled.length,
+        failed: rejected.length,
+        withFollowers,
+        withGenres,
+        source,
+        reason: rejected.length ? String(rejected[0].reason?.message || rejected[0].reason || "Unknown") : "",
+      },
+    };
+  } catch {
+    return {
+      items: baseItems,
+      debug: {
+        attempted: ids.length,
+        succeeded: 0,
+        failed: ids.length,
+        withFollowers: 0,
+        withGenres: 0,
+        reason: "Artist enrichment failed before individual responses",
+      },
+    };
+  }
+}
+
+function mergeArtistDetails(baseItems, detailsById) {
+  return baseItems.map((artist) => {
+    const details = detailsById.get(artist.id);
+    if (!details) return artist;
+
+    return {
+      ...artist,
+      followers: details.followers || artist.followers,
+      genres: (details.genres && details.genres.length ? details.genres : artist.genres) || [],
+      external_urls: details.external_urls || artist.external_urls,
+      images: (details.images && details.images.length ? details.images : artist.images) || [],
+    };
+  });
 }
 
 export async function fetchTopData(token, endpoint, fallbackErrorMessage) {
@@ -71,6 +194,9 @@ function mapTopArtists(artistsData) {
     rank: index + 1,
     name: artist.name,
     imageUrl: artist.images?.[2]?.url || artist.images?.[1]?.url || artist.images?.[0]?.url || "",
+    followers: artist.followers?.total,
+    genres: (artist.genres || []).slice(0, 3),
+    spotifyUrl: artist.external_urls?.spotify || "",
   }));
 }
 

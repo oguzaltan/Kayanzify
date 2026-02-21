@@ -1,5 +1,6 @@
 import {
   API_ALBUMS_BASE,
+  API_ARTISTS_BASE,
   API_ME,
   API_TOP_ARTISTS_BASE,
   API_TOP_TRACKS_BASE,
@@ -41,6 +42,7 @@ let activeResultsTab = "songs";
 let lastProfileData = null;
 let loadedTopTimeRange = null;
 let isLoadingTopData = false;
+let statusClearTimer = null;
 
 onClick(loginBtn, () =>
   startLogin({
@@ -57,6 +59,7 @@ onClick(themeBtn, () => toggleTheme(themeBtn));
 onClick(songsTabBtn, () => setActiveResultsTab("songs"));
 onClick(artistsTabBtn, () => setActiveResultsTab("artists"));
 onClick(albumsTabBtn, () => setActiveResultsTab("albums"));
+onChange(timeRangeSelect, handleTimeRangeChange);
 
 init();
 
@@ -83,7 +86,7 @@ async function init() {
         tokenEndpoint: TOKEN_ENDPOINT,
       });
       clearAuthQueryParams();
-      setStatus("Logged in. Open Profile or use tabs.");
+      setStatus("Connected. Open Profile or switch to Songs, Artists, or Albums.");
       setAuthButtonState(true);
       showResultsTabs();
     } catch (error) {
@@ -96,7 +99,7 @@ async function init() {
 
   const token = getStoredToken();
   if (token) {
-    setStatus("Token found. Open Profile or use tabs.");
+    setStatus("Connected. Open Profile or switch to Songs, Artists, or Albums.");
     setAuthButtonState(true);
     showResultsTabs();
   }
@@ -116,7 +119,7 @@ async function loadProfile() {
     const profile = await fetchProfile(token, API_ME);
     lastProfileData = profile;
     renderProfile(profile, new Date());
-    setStatus(`Hello, ${profile.display_name || profile.id}`);
+    setStatus(`Hello, ${profile.display_name || profile.id}`, { ephemeral: true });
   } catch (error) {
     if (error?.status === 401) {
       setStatus("Token expired/invalid. Login again.");
@@ -142,24 +145,25 @@ async function loadTop10() {
   const timeRangeLabel = getTimeRangeLabel(timeRange);
 
   isLoadingTopData = true;
-  setStatus(`Loading top 10 songs, artists, and albums (${timeRangeLabel})...`);
 
   try {
-    const { topSongs, topArtists, topAlbums } = await fetchTop10Bundle({
+    const { topSongs, topArtists, topAlbums, artistDebug } = await fetchTop10Bundle({
       token,
       timeRange,
       apiTopTracksBase: API_TOP_TRACKS_BASE,
       apiTopArtistsBase: API_TOP_ARTISTS_BASE,
+      apiArtistsBase: API_ARTISTS_BASE,
       apiAlbumsBase: API_ALBUMS_BASE,
     });
 
     songsResult = { items: topSongs, timeRangeLabel };
-    artistsResult = { items: topArtists, timeRangeLabel };
+    artistsResult = { items: topArtists, timeRangeLabel, debug: artistDebug };
     albumsResult = { items: topAlbums, timeRangeLabel };
     loadedTopTimeRange = timeRange;
-    activeResultsTab = "songs";
+    if (!["songs", "artists", "albums"].includes(activeResultsTab)) {
+      activeResultsTab = "songs";
+    }
     renderResultsTab();
-    setStatus(`Loaded top 10 songs, artists, and albums (${timeRangeLabel}).`);
   } catch (error) {
     if (error?.status === 401) {
       setStatus("Token expired/invalid. Login again.");
@@ -302,7 +306,7 @@ async function copyProfileJson() {
       document.execCommand("copy");
       document.body.removeChild(textarea);
     }
-    setStatus("Profile JSON copied to clipboard.");
+    setStatus("Profile JSON copied to clipboard.", { ephemeral: true });
   } catch {
     setStatus("Copy failed. Please try again.");
   }
@@ -324,11 +328,11 @@ function renderTopSongs(topSongs, timeRangeLabel) {
   `;
 }
 
-function renderTopArtists(topArtists, timeRangeLabel) {
+function renderTopArtists(topArtists, timeRangeLabel, artistDebug) {
   const items = topArtists
     .map(
       (artist) =>
-        `<li><div class="album-row">${artist.imageUrl ? `<img class="album-cover" src="${escapeHtml(artist.imageUrl)}" alt="${escapeHtml(artist.name)} image" />` : `<div class="album-cover" aria-hidden="true"></div>`}<div><strong>#${artist.rank}</strong> ${escapeHtml(artist.name)}</div></div></li>`
+        `<li><div class="album-row">${artist.imageUrl ? `<img class="album-cover" src="${escapeHtml(artist.imageUrl)}" alt="${escapeHtml(artist.name)} image" />` : `<div class="album-cover" aria-hidden="true"></div>`}<div><strong>#${artist.rank}</strong> ${escapeHtml(artist.name)}<br /><span class="muted">Followers: ${escapeHtml(formatNumber(artist.followers))}</span><br /><span class="muted">Genres: ${escapeHtml(artist.genres?.length ? artist.genres.join(", ") : "Not available")}</span>${artist.spotifyUrl ? `<br /><a href="${escapeHtml(artist.spotifyUrl)}" target="_blank" rel="noreferrer">Open in Spotify</a>` : ""}</div></div></li>`
     )
     .join("");
 
@@ -336,6 +340,7 @@ function renderTopArtists(topArtists, timeRangeLabel) {
   outputEl.innerHTML = `
     <h2 class="result-title">🎤 Top 10 Artists</h2>
     <p class="result-subtitle">Time range: ${escapeHtml(timeRangeLabel)}</p>
+    ${renderArtistDebug(artistDebug)}
     <ol class="result-list">${items}</ol>
   `;
 }
@@ -384,7 +389,7 @@ function renderResultsTab() {
 
   if (activeResultsTab === "artists") {
     if (artistsResult) {
-      renderTopArtists(artistsResult.items, artistsResult.timeRangeLabel);
+      renderTopArtists(artistsResult.items, artistsResult.timeRangeLabel, artistsResult.debug);
     } else {
       renderUnavailable("Artists");
     }
@@ -433,6 +438,16 @@ function onClick(element, handler) {
   if (element) element.addEventListener("click", handler);
 }
 
+function onChange(element, handler) {
+  if (element) element.addEventListener("change", handler);
+}
+
+function handleTimeRangeChange() {
+  const token = getStoredToken();
+  if (!token) return;
+  loadTop10();
+}
+
 function renderError(errorText) {
   outputEl.classList.add("muted");
   outputEl.textContent = errorText || "Something went wrong.";
@@ -443,6 +458,32 @@ function renderUnavailable(sectionName) {
   outputEl.textContent = `${sectionName} data is not loaded yet.`;
 }
 
-function setStatus(message) {
+function renderArtistDebug(debug) {
+  if (!debug) return "";
+
+  const text = `Artist details check — source: ${debug.source || "single"}, attempted: ${debug.attempted}, succeeded: ${debug.succeeded}, failed: ${debug.failed}, with followers: ${debug.withFollowers}, with genres: ${debug.withGenres}${debug.reason ? ` · sample error: ${debug.reason}` : ""}`;
+  return `<p class="muted">${escapeHtml(text)}</p>`;
+}
+
+function setStatus(message, options) {
+  setStatusWithOptions(message, options);
+}
+
+function setStatusWithOptions(message, { ephemeral = false, durationMs = 2500 } = {}) {
   statusEl.textContent = message;
+
+  if (statusClearTimer) {
+    clearTimeout(statusClearTimer);
+    statusClearTimer = null;
+  }
+
+  if (!ephemeral) return;
+
+  const lastMessage = message;
+  statusClearTimer = setTimeout(() => {
+    if (statusEl.textContent === lastMessage) {
+      statusEl.textContent = "";
+    }
+    statusClearTimer = null;
+  }, durationMs);
 }
