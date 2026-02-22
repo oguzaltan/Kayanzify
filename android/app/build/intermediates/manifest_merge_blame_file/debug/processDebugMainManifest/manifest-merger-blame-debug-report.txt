@@ -13,22 +13,22 @@
 11-->C:\Users\fhdwalt\Desktop\Kayanzify\android\app\src\main\AndroidManifest.xml:4:22-64
 12
 13    <permission
-13-->[androidx.core:core:1.15.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\48848b5a9e8592f91f14f2a42fdc9854\workspace\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
+13-->[androidx.core:core:1.15.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\841be799169f32ceefd341e29756c42e\workspace\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
 14        android:name="com.kayanzify.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-14-->[androidx.core:core:1.15.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\48848b5a9e8592f91f14f2a42fdc9854\workspace\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
+14-->[androidx.core:core:1.15.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\841be799169f32ceefd341e29756c42e\workspace\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
 15        android:protectionLevel="signature" />
-15-->[androidx.core:core:1.15.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\48848b5a9e8592f91f14f2a42fdc9854\workspace\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
+15-->[androidx.core:core:1.15.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\841be799169f32ceefd341e29756c42e\workspace\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
 16
 17    <uses-permission android:name="com.kayanzify.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-17-->[androidx.core:core:1.15.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\48848b5a9e8592f91f14f2a42fdc9854\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
-17-->[androidx.core:core:1.15.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\48848b5a9e8592f91f14f2a42fdc9854\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
+17-->[androidx.core:core:1.15.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\841be799169f32ceefd341e29756c42e\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
+17-->[androidx.core:core:1.15.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\841be799169f32ceefd341e29756c42e\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
 18
 19    <application
 19-->C:\Users\fhdwalt\Desktop\Kayanzify\android\app\src\main\AndroidManifest.xml:6:5-33:19
 20        android:allowBackup="true"
 20-->C:\Users\fhdwalt\Desktop\Kayanzify\android\app\src\main\AndroidManifest.xml:7:9-35
 21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-21-->[androidx.core:core:1.15.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\48848b5a9e8592f91f14f2a42fdc9854\workspace\transformed\core-1.15.0\AndroidManifest.xml:28:18-86
+21-->[androidx.core:core:1.15.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\841be799169f32ceefd341e29756c42e\workspace\transformed\core-1.15.0\AndroidManifest.xml:28:18-86
 22        android:debuggable="true"
 23        android:extractNativeLibs="false"
 24        android:icon="@android:drawable/sym_def_app_icon"
@@ -82,81 +82,81 @@
 48            </intent-filter>
 49        </activity>
 50        <activity
-50-->[androidx.compose.ui:ui-tooling-android:1.7.7] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\2dc1ab78a6edafaf0ce7c7c3a68a668e\workspace\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
+50-->[androidx.compose.ui:ui-tooling-android:1.7.7] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\97796853c62f48fefe15514f39952a9e\workspace\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
 51            android:name="androidx.compose.ui.tooling.PreviewActivity"
-51-->[androidx.compose.ui:ui-tooling-android:1.7.7] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\2dc1ab78a6edafaf0ce7c7c3a68a668e\workspace\transformed\ui-tooling-release\AndroidManifest.xml:24:13-71
+51-->[androidx.compose.ui:ui-tooling-android:1.7.7] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\97796853c62f48fefe15514f39952a9e\workspace\transformed\ui-tooling-release\AndroidManifest.xml:24:13-71
 52            android:exported="true" />
-52-->[androidx.compose.ui:ui-tooling-android:1.7.7] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\2dc1ab78a6edafaf0ce7c7c3a68a668e\workspace\transformed\ui-tooling-release\AndroidManifest.xml:25:13-36
+52-->[androidx.compose.ui:ui-tooling-android:1.7.7] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\97796853c62f48fefe15514f39952a9e\workspace\transformed\ui-tooling-release\AndroidManifest.xml:25:13-36
 53        <activity
-53-->[androidx.compose.ui:ui-test-manifest:1.7.7] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\b2adb7d40dcac0fe1f6f57371400c6ec\workspace\transformed\ui-test-manifest-1.7.7\AndroidManifest.xml:23:9-25:39
+53-->[androidx.compose.ui:ui-test-manifest:1.7.7] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\4fafdef19fd851e46433dbf0b2a18af4\workspace\transformed\ui-test-manifest-1.7.7\AndroidManifest.xml:23:9-25:39
 54            android:name="androidx.activity.ComponentActivity"
-54-->[androidx.compose.ui:ui-test-manifest:1.7.7] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\b2adb7d40dcac0fe1f6f57371400c6ec\workspace\transformed\ui-test-manifest-1.7.7\AndroidManifest.xml:24:13-63
+54-->[androidx.compose.ui:ui-test-manifest:1.7.7] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\4fafdef19fd851e46433dbf0b2a18af4\workspace\transformed\ui-test-manifest-1.7.7\AndroidManifest.xml:24:13-63
 55            android:exported="true" />
-55-->[androidx.compose.ui:ui-test-manifest:1.7.7] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\b2adb7d40dcac0fe1f6f57371400c6ec\workspace\transformed\ui-test-manifest-1.7.7\AndroidManifest.xml:25:13-36
+55-->[androidx.compose.ui:ui-test-manifest:1.7.7] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\4fafdef19fd851e46433dbf0b2a18af4\workspace\transformed\ui-test-manifest-1.7.7\AndroidManifest.xml:25:13-36
 56
 57        <provider
-57-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\59b4b6f7c5bc59a1006d8574957fb528\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+57-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\22e5930a808a92eca376448d648dc6fa\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
 58            android:name="androidx.startup.InitializationProvider"
-58-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\59b4b6f7c5bc59a1006d8574957fb528\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+58-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\22e5930a808a92eca376448d648dc6fa\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
 59            android:authorities="com.kayanzify.androidx-startup"
-59-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\59b4b6f7c5bc59a1006d8574957fb528\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+59-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\22e5930a808a92eca376448d648dc6fa\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
 60            android:exported="false" >
-60-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\59b4b6f7c5bc59a1006d8574957fb528\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+60-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\22e5930a808a92eca376448d648dc6fa\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
 61            <meta-data
-61-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\59b4b6f7c5bc59a1006d8574957fb528\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+61-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\22e5930a808a92eca376448d648dc6fa\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
 62                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-62-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\59b4b6f7c5bc59a1006d8574957fb528\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+62-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\22e5930a808a92eca376448d648dc6fa\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
 63                android:value="androidx.startup" />
-63-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\59b4b6f7c5bc59a1006d8574957fb528\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+63-->[androidx.emoji2:emoji2:1.3.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\22e5930a808a92eca376448d648dc6fa\workspace\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
 64            <meta-data
-64-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\74488dd05621bd474529171e3ec9b86d\workspace\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:29:13-31:52
+64-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\69bf85e49eb8cb9747babe849b1f1c2b\workspace\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:29:13-31:52
 65                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-65-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\74488dd05621bd474529171e3ec9b86d\workspace\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:30:17-78
+65-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\69bf85e49eb8cb9747babe849b1f1c2b\workspace\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:30:17-78
 66                android:value="androidx.startup" />
-66-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\74488dd05621bd474529171e3ec9b86d\workspace\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:31:17-49
+66-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\69bf85e49eb8cb9747babe849b1f1c2b\workspace\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:31:17-49
 67            <meta-data
-67-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+67-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
 68                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-68-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+68-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
 69                android:value="androidx.startup" />
-69-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+69-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
 70        </provider>
 71
 72        <receiver
-72-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+72-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
 73            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-73-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+73-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
 74            android:directBootAware="false"
-74-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+74-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
 75            android:enabled="true"
-75-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+75-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
 76            android:exported="true"
-76-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+76-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
 77            android:permission="android.permission.DUMP" >
-77-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+77-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
 78            <intent-filter>
-78-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+78-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
 79                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-79-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
-79-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+79-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+79-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
 80            </intent-filter>
 81            <intent-filter>
-81-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+81-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
 82                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-82-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
-82-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+82-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+82-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
 83            </intent-filter>
 84            <intent-filter>
-84-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+84-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
 85                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-85-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
-85-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+85-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+85-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
 86            </intent-filter>
 87            <intent-filter>
-87-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+87-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
 88                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-88-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
-88-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.2.1\transforms\934cbd3cd3e71b2912290cd5b19d6d6e\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+88-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+88-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\ecda7527f670a5388449aa6d242805e3\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
 89            </intent-filter>
 90        </receiver>
 91    </application>

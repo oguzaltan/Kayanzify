@@ -4,7 +4,7 @@
             "outputFile": "com.kayanzify.app-mergeDebugResources-46:/values-ja/values-ja.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.2.1\\transforms\\aead2e300ffe4203a27aa6c7b7a5e041\\workspace\\transformed\\ui-release\\res\\values-ja\\values-ja.xml",
+                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.3.1\\transforms\\51f5cad3386cefd1a9e431a8e0e9a4a9\\workspace\\transformed\\ui-release\\res\\values-ja\\values-ja.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,24 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.2.1\\transforms\\48848b5a9e8592f91f14f2a42fdc9854\\workspace\\transformed\\core-1.15.0\\res\\values-ja\\values-ja.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,147,247,341,437,530,623,724",
-                        "endColumns": "91,99,93,95,92,92,100,100",
-                        "endOffsets": "142,242,336,432,525,618,719,820"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,81",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,197,297,391,487,580,673,7659",
-                        "endColumns": "91,99,93,95,92,92,100,100",
-                        "endOffsets": "192,292,386,482,575,668,769,7755"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.2.1\\transforms\\66dcb3ca5cd15bb8b00545d5263c4884\\workspace\\transformed\\material3-release\\res\\values-ja\\values-ja.xml",
+                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.3.1\\transforms\\78576396af3731c3231315138c500c4d\\workspace\\transformed\\material3-release\\res\\values-ja\\values-ja.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,7 +38,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.2.1\\transforms\\198c4d053afa3a31239ace7bc35f57f3\\workspace\\transformed\\foundation-release\\res\\values-ja\\values-ja.xml",
+                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.3.1\\transforms\\841be799169f32ceefd341e29756c42e\\workspace\\transformed\\core-1.15.0\\res\\values-ja\\values-ja.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,147,247,341,437,530,623,724",
+                        "endColumns": "91,99,93,95,92,92,100,100",
+                        "endOffsets": "142,242,336,432,525,618,719,820"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,81",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,197,297,391,487,580,673,7659",
+                        "endColumns": "91,99,93,95,92,92,100,100",
+                        "endOffsets": "192,292,386,482,575,668,769,7755"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.3.1\\transforms\\8d06757e48531aa8d5ba2490183f357d\\workspace\\transformed\\foundation-release\\res\\values-ja\\values-ja.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
