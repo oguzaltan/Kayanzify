@@ -4,24 +4,7 @@
             "outputFile": "com.kayanzify.app-mergeDebugResources-46:/values-ko/values-ko.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.0.0\\transforms\\f057dd8fe2cf2cfd1f34a1d5a3084247\\transformed\\foundation-release\\res\\values-ko\\values-ko.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,137",
-                        "endColumns": "81,78",
-                        "endOffsets": "132,211"
-                    },
-                    "to": {
-                        "startLines": "85,86",
-                        "startColumns": "4,4",
-                        "startOffsets": "7944,8026",
-                        "endColumns": "81,78",
-                        "endOffsets": "8021,8100"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.0.0\\transforms\\64e00d2ccfd579346bd91f5af485c0e9\\transformed\\material3-release\\res\\values-ko\\values-ko.xml",
+                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.2.1\\transforms\\66dcb3ca5cd15bb8b00545d5263c4884\\workspace\\transformed\\material3-release\\res\\values-ko\\values-ko.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.0.0\\transforms\\a70df81d6e23b5bd29726decd34b2548\\transformed\\core-1.15.0\\res\\values-ko\\values-ko.xml",
+                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.2.1\\transforms\\48848b5a9e8592f91f14f2a42fdc9854\\workspace\\transformed\\core-1.15.0\\res\\values-ko\\values-ko.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -55,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.0.0\\transforms\\79f4c69fb0f4a8d4d2960d91daab78ee\\transformed\\ui-release\\res\\values-ko\\values-ko.xml",
+                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.2.1\\transforms\\aead2e300ffe4203a27aa6c7b7a5e041\\workspace\\transformed\\ui-release\\res\\values-ko\\values-ko.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -69,6 +52,23 @@
                         "startOffsets": "782,861,937,1025,1115,1195,1270,6996,7075,7154,7227,7303,7371,7447,7521,7692,7766,7830",
                         "endColumns": "78,75,87,89,79,74,78,78,78,72,75,67,75,73,69,73,63,113",
                         "endOffsets": "856,932,1020,1110,1190,1265,1344,7070,7149,7222,7298,7366,7442,7516,7586,7761,7825,7939"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.2.1\\transforms\\198c4d053afa3a31239ace7bc35f57f3\\workspace\\transformed\\foundation-release\\res\\values-ko\\values-ko.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,137",
+                        "endColumns": "81,78",
+                        "endOffsets": "132,211"
+                    },
+                    "to": {
+                        "startLines": "85,86",
+                        "startColumns": "4,4",
+                        "startOffsets": "7944,8026",
+                        "endColumns": "81,78",
+                        "endOffsets": "8021,8100"
                     }
                 }
             ]
