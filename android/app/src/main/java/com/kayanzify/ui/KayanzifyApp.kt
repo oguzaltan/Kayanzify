@@ -35,10 +35,10 @@ enum class KayanzifyTab(val title: String) {
     ALBUMS("Albums")
 }
 
-enum class TimeRange(val label: String) {
-    SHORT("Last 4 weeks"),
-    MEDIUM("Last 6 months"),
-    LONG("All time")
+enum class TimeRange(val value: String, val label: String) {
+    SHORT("short_term", "Last 4 weeks"),
+    MEDIUM("medium_term", "Last 6 months"),
+    LONG("long_term", "All time")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,6 +51,7 @@ fun KayanzifyApp(vm: com.kayanzify.SpotifyViewModel) {
     val profileText by vm.profile.collectAsState()
     val tracks by vm.topTracks.collectAsState()
     val artists by vm.topArtists.collectAsState()
+    val albums by vm.topAlbums.collectAsState()
     val token by vm.accessToken.collectAsState()
 
     MaterialTheme {
@@ -93,8 +94,8 @@ fun KayanzifyApp(vm: com.kayanzify.SpotifyViewModel) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     TimeRange.entries.forEach { range ->
                         FilterChip(
-                            selected = selectedRange == range.label,
-                            onClick = { vm.setTimeRange(range.label) },
+                            selected = selectedRange == range.value,
+                            onClick = { vm.setTimeRange(range.value) },
                             label = { Text(range.label) }
                         )
                     }
@@ -117,7 +118,7 @@ fun KayanzifyApp(vm: com.kayanzify.SpotifyViewModel) {
                     KayanzifyTab.PROFILE -> ProfileScreen(profileText)
                     KayanzifyTab.SONGS -> ItemListScreen(title = "Top Songs", items = tracks.map { it.name })
                     KayanzifyTab.ARTISTS -> ItemListScreen(title = "Top Artists", items = artists.map { it.name })
-                    KayanzifyTab.ALBUMS -> ItemListScreen(title = "Top Albums", items = emptyList())
+                    KayanzifyTab.ALBUMS -> ItemListScreen(title = "Top Albums", items = albums.mapNotNull { it.name })
                 }
             }
         }

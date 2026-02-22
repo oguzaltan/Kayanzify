@@ -22,19 +22,31 @@ This folder contains a **native Android starter scaffold** (Kotlin + Jetpack Com
 
 In Spotify Dashboard, add redirect URI:
 
-- `kayanzify://auth-callback`
+- `kayanzify://auth-callback` (custom scheme) or later migrate to an HTTPS App Link.
 
-## Next coding steps
+> **Note:** when using a custom scheme the browser will not automatically close
+> after authorization. You may need to tap "Open in Kayanzify" or press Back
+> manually. This is normal behavior for most mobile browsers.
 
-- ✅ PKCE auth flow implemented
-- ✅ Token persistence using DataStore (plus backward-compatible SharedPreferences)
-- ✅ Retrofit Spotify client and repository added
-- ✅ Real API wired for `/v1/me`, `/v1/me/top/tracks`, `/v1/me/top/artists`
+## Current status
 
-To continue:
+This starter now includes a fully working Spotify integration:
 
-1. Display album/track images and additional details
-2. Implement logout/refresh and token expiration handling
-3. Explore more Spotify endpoints or polish UI
+- ✅ PKCE auth flow with custom scheme redirect
+- ✅ Token persistence via DataStore (legacy prefs still used for sync reads)
+- ✅ Retrofit service & repository for Spotify APIs
+- ✅ Profile, Top Songs and Top Artists tabs displaying real user data
+- ✅ Time-range selector and refresh button driving network requests
+
+> The app receives the callback intent successfully; browser behaviour is
+> beyond the app's control (see note above).
+
+### What's next
+
+1. Display album/track/artists images and extra metadata
+2. Add logout and handle token expiry/refresh
+3. Add loading/error UI states and optional dark theme
+4. Cache results or support offline usage
+5. Prepare debug/release APK for distribution
 
 See learning roadmap: `../ANDROID_LEARNING_PLAN.md`

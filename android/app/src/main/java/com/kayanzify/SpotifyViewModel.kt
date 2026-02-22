@@ -7,6 +7,7 @@ import com.kayanzify.network.SpotifyRepository
 import com.kayanzify.network.TokenDataStore
 import com.kayanzify.network.TrackItem
 import com.kayanzify.network.ArtistItem
+import com.kayanzify.network.AlbumSummary
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.firstOrNull
@@ -24,10 +25,13 @@ class SpotifyViewModel(application: Application) : AndroidViewModel(application)
     private val _topArtists = MutableStateFlow<List<ArtistItem>>(emptyList())
     val topArtists: StateFlow<List<ArtistItem>> = _topArtists
 
+    private val _topAlbums = MutableStateFlow<List<AlbumSummary>>(emptyList())
+    val topAlbums: StateFlow<List<AlbumSummary>> = _topAlbums
+
     private val _accessToken = MutableStateFlow<String?>(null)
     val accessToken: StateFlow<String?> = _accessToken
 
-    private val _timeRange = MutableStateFlow("medium")
+    private val _timeRange = MutableStateFlow("medium_term")
     val timeRange: StateFlow<String> = _timeRange
 
     init {
@@ -35,7 +39,10 @@ class SpotifyViewModel(application: Application) : AndroidViewModel(application)
         viewModelScope.launch {
             val token = TokenDataStore.getToken(application.applicationContext).firstOrNull()
             _accessToken.value = token
-            if (token != null) loadProfile()
+            if (token != null) {
+                loadProfile()
+                refreshTopData()
+            }
         }
     }
 
@@ -47,8 +54,9 @@ class SpotifyViewModel(application: Application) : AndroidViewModel(application)
     fun refreshTopData() {
         viewModelScope.launch {
             val range = _timeRange.value
-            _topTracks.value = repo.getTopTracks(range)
-            _topArtists.value = repo.getTopArtists(range)
+            _topTracks.value = repo.getTopTracks(range, 10)
+            _topArtists.value = repo.getTopArtists(range, 10)
+            _topAlbums.value = repo.getTopAlbums(range, 10)
         }
     }
 

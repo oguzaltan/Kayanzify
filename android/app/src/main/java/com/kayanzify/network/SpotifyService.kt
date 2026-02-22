@@ -30,6 +30,7 @@ data class ArtistSummary(
 
 @JsonClass(generateAdapter = true)
 data class AlbumSummary(
+    val name: String,
     @Json(name = "images") val images: List<Image>?
 )
 
