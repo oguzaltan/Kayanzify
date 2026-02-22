@@ -1,6 +1,8 @@
 package com.kayanzify.network
 
 import android.content.Context
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.flow.firstOrNull
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -9,9 +11,12 @@ class SpotifyRepository(private val context: Context) {
     private val service: SpotifyService
 
     init {
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.spotify.com/")
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
         service = retrofit.create(SpotifyService::class.java)
     }

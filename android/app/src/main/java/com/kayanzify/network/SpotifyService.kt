@@ -1,6 +1,7 @@
 package com.kayanzify.network
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -8,11 +9,13 @@ import retrofit2.http.Query
 
 // Minimal models
 
+@JsonClass(generateAdapter = true)
 data class ProfileResponse(
     @Json(name = "display_name") val displayName: String?,
     val email: String?
 )
 
+@JsonClass(generateAdapter = true)
 data class TrackItem(
     val id: String,
     val name: String,
@@ -20,28 +23,34 @@ data class TrackItem(
     @Json(name = "album") val album: AlbumSummary?
 )
 
+@JsonClass(generateAdapter = true)
 data class ArtistSummary(
     val name: String
 )
 
+@JsonClass(generateAdapter = true)
 data class AlbumSummary(
     @Json(name = "images") val images: List<Image>?
 )
 
+@JsonClass(generateAdapter = true)
 data class Image(
     val url: String
 )
 
+@JsonClass(generateAdapter = true)
 data class TopTracksResponse(
     val items: List<TrackItem>
 )
 
+@JsonClass(generateAdapter = true)
 data class ArtistItem(
     val id: String,
     val name: String,
     @Json(name = "images") val images: List<Image>?
 )
 
+@JsonClass(generateAdapter = true)
 data class TopArtistsResponse(
     val items: List<ArtistItem>
 )
