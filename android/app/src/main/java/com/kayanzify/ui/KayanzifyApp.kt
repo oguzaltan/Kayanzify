@@ -42,7 +42,7 @@ enum class TimeRange(val label: String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun KayanzifyApp() {
+fun KayanzifyApp(accessToken: String? = null) {
     var selectedTab by remember { mutableStateOf(KayanzifyTab.PROFILE) }
     var selectedRange by remember { mutableStateOf(TimeRange.MEDIUM) }
 
@@ -54,6 +54,7 @@ fun KayanzifyApp() {
                 )
             }
         ) { innerPadding ->
+            val context = androidx.compose.ui.platform.LocalContext.current
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -64,7 +65,9 @@ fun KayanzifyApp() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Button(onClick = { /* Spotify PKCE login: Week 2 */ }) {
+                    Button(onClick = {
+                        com.kayanzify.SpotifyAuth.launchAuth(context)
+                    }) {
                         Text("Login with Spotify")
                     }
                     Button(onClick = { /* Load profile/api: Week 3 */ }) {
@@ -102,7 +105,7 @@ fun KayanzifyApp() {
                 }
 
                 when (selectedTab) {
-                    KayanzifyTab.PROFILE -> ProfileScreen()
+                    KayanzifyTab.PROFILE -> ProfileScreen(accessToken)
                     KayanzifyTab.SONGS -> SimpleListScreen(title = "Top Songs")
                     KayanzifyTab.ARTISTS -> SimpleListScreen(title = "Top Artists")
                     KayanzifyTab.ALBUMS -> SimpleListScreen(title = "Top Albums")
@@ -113,11 +116,41 @@ fun KayanzifyApp() {
 }
 
 @Composable
-private fun ProfileScreen() {
+private fun ProfileScreen(accessToken: String?) {
     Column(modifier = Modifier.padding(top = 16.dp)) {
         Text("Profile", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-        Text("This is your starter native profile screen.")
-        Text("Next: wire Spotify /v1/me in Week 3.")
+        if (accessToken == null) {
+            Text("Not logged in.")
+        } else {
+            // Fetch and display profile data
+            val profile = remember { mutableStateOf<String?>(null) }
+            androidx.compose.runtime.LaunchedEffect(accessToken) {
+                try {
+                    val result = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+                        val client = okhttp3.OkHttpClient()
+                        val req = okhttp3.Request.Builder()
+                            .url("https://api.spotify.com/v1/me")
+                            .addHeader("Authorization", "Bearer $accessToken")
+                            .build()
+                        val resp = client.newCall(req).execute()
+                        val body = resp.body?.string()
+                        Pair(resp.code, body)
+                    }
+                    val (code, body) = result
+                    if (code in 200..299 && body != null) {
+                        val json = org.json.JSONObject(body)
+                        val name = json.optString("display_name", "?")
+                        val email = json.optString("email", "?")
+                        profile.value = "Name: $name\nEmail: $email"
+                    } else {
+                        profile.value = "Failed to load profile ($code) \nbody=${body ?: "<null>"}"
+                    }
+                } catch (e: Exception) {
+                    profile.value = "Error: ${e.message ?: e.toString()}"
+                }
+            }
+            Text(profile.value ?: "Loading profile...")
+        }
     }
 }
 
