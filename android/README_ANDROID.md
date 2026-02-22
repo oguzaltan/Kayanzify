@@ -26,13 +26,15 @@ In Spotify Dashboard, add redirect URI:
 
 ## Next coding steps
 
-1. Add PKCE auth flow in app
-2. Save token using DataStore
-3. Add Retrofit Spotify client
-4. Wire endpoints:
+- ✅ PKCE auth flow implemented
+- ✅ Token persistence using DataStore (plus backward-compatible SharedPreferences)
+- ✅ Retrofit Spotify client and repository added
+- ✅ Real API wired for `/v1/me`, `/v1/me/top/tracks`, `/v1/me/top/artists`
 
-   - `/v1/me`
-   - `/v1/me/top/tracks`
-   - `/v1/me/top/artists`
+To continue:
+
+1. Display album/track images and additional details
+2. Implement logout/refresh and token expiration handling
+3. Explore more Spotify endpoints or polish UI
 
 See learning roadmap: `../ANDROID_LEARNING_PLAN.md`

@@ -23,6 +23,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -42,9 +43,15 @@ enum class TimeRange(val label: String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun KayanzifyApp(accessToken: String? = null) {
+fun KayanzifyApp(vm: com.kayanzify.SpotifyViewModel) {
     var selectedTab by remember { mutableStateOf(KayanzifyTab.PROFILE) }
-    var selectedRange by remember { mutableStateOf(TimeRange.MEDIUM) }
+
+    // collect state from viewmodel
+    val selectedRange by vm.timeRange.collectAsState()
+    val profileText by vm.profile.collectAsState()
+    val tracks by vm.topTracks.collectAsState()
+    val artists by vm.topArtists.collectAsState()
+    val token by vm.accessToken.collectAsState()
 
     MaterialTheme {
         Scaffold(
@@ -65,13 +72,15 @@ fun KayanzifyApp(accessToken: String? = null) {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Button(onClick = {
-                        com.kayanzify.SpotifyAuth.launchAuth(context)
-                    }) {
-                        Text("Login with Spotify")
+                    if (token == null) {
+                        Button(onClick = {
+                            com.kayanzify.SpotifyAuth.launchAuth(context)
+                        }) {
+                            Text("Login with Spotify")
+                        }
                     }
-                    Button(onClick = { /* Load profile/api: Week 3 */ }) {
-                        Text("Load Data")
+                    Button(onClick = { vm.refreshTopData() }) {
+                        Text("Refresh")
                     }
                 }
 
@@ -84,8 +93,8 @@ fun KayanzifyApp(accessToken: String? = null) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     TimeRange.entries.forEach { range ->
                         FilterChip(
-                            selected = selectedRange == range,
-                            onClick = { selectedRange = range },
+                            selected = selectedRange == range.label,
+                            onClick = { vm.setTimeRange(range.label) },
                             label = { Text(range.label) }
                         )
                     }
@@ -105,10 +114,10 @@ fun KayanzifyApp(accessToken: String? = null) {
                 }
 
                 when (selectedTab) {
-                    KayanzifyTab.PROFILE -> ProfileScreen(accessToken)
-                    KayanzifyTab.SONGS -> SimpleListScreen(title = "Top Songs")
-                    KayanzifyTab.ARTISTS -> SimpleListScreen(title = "Top Artists")
-                    KayanzifyTab.ALBUMS -> SimpleListScreen(title = "Top Albums")
+                    KayanzifyTab.PROFILE -> ProfileScreen(profileText)
+                    KayanzifyTab.SONGS -> ItemListScreen(title = "Top Songs", items = tracks.map { it.name })
+                    KayanzifyTab.ARTISTS -> ItemListScreen(title = "Top Artists", items = artists.map { it.name })
+                    KayanzifyTab.ALBUMS -> ItemListScreen(title = "Top Albums", items = emptyList())
                 }
             }
         }
@@ -116,53 +125,19 @@ fun KayanzifyApp(accessToken: String? = null) {
 }
 
 @Composable
-private fun ProfileScreen(accessToken: String?) {
+private fun ProfileScreen(profileText: String?) {
     Column(modifier = Modifier.padding(top = 16.dp)) {
         Text("Profile", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-        if (accessToken == null) {
+        if (profileText == null) {
             Text("Not logged in.")
         } else {
-            // Fetch and display profile data
-            val profile = remember { mutableStateOf<String?>(null) }
-            androidx.compose.runtime.LaunchedEffect(accessToken) {
-                try {
-                    val result = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
-                        val client = okhttp3.OkHttpClient()
-                        val req = okhttp3.Request.Builder()
-                            .url("https://api.spotify.com/v1/me")
-                            .addHeader("Authorization", "Bearer $accessToken")
-                            .build()
-                        val resp = client.newCall(req).execute()
-                        val body = resp.body?.string()
-                        Pair(resp.code, body)
-                    }
-                    val (code, body) = result
-                    if (code in 200..299 && body != null) {
-                        val json = org.json.JSONObject(body)
-                        val name = json.optString("display_name", "?")
-                        val email = json.optString("email", "?")
-                        profile.value = "Name: $name\nEmail: $email"
-                    } else {
-                        profile.value = "Failed to load profile ($code) \nbody=${body ?: "<null>"}"
-                    }
-                } catch (e: Exception) {
-                    profile.value = "Error: ${e.message ?: e.toString()}"
-                }
-            }
-            Text(profile.value ?: "Loading profile...")
+            Text(profileText)
         }
     }
 }
 
 @Composable
-private fun SimpleListScreen(title: String) {
-    val mockItems = listOf(
-        "#1 Example Item",
-        "#2 Example Item",
-        "#3 Example Item",
-        "#4 Example Item"
-    )
-
+private fun ItemListScreen(title: String, items: List<String>) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -172,9 +147,11 @@ private fun SimpleListScreen(title: String) {
     ) {
         item {
             Text(title, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-            Text("Mock data for learning UI first.")
+            if (items.isEmpty()) {
+                Text("No data.")
+            }
         }
-        items(mockItems) { item ->
+        items(items) { item ->
             Text(item)
         }
     }

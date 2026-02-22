@@ -30,13 +30,13 @@ A running Android app with the same screen structure as Kayanzify, but no API ye
 - Secure token storage (DataStore)
 
 ### Build goals
-- Add Spotify login button
-- Open Spotify authorize URL in browser
-- Handle redirect back into app
-- Exchange code for access token
+- ✅ Add Spotify login button
+- ✅ Open Spotify authorize URL in browser
+- ✅ Handle redirect back into app
+- ✅ Exchange code for access token
 
 ### Deliverable
-User can sign in and app stores access token.
+User can sign in and app stores access token (persisted via DataStore).
 
 ---
 
@@ -48,13 +48,13 @@ User can sign in and app stores access token.
 - UI state (`Loading`, `Success`, `Error`)
 
 ### Build goals
-- Fetch profile (`/v1/me`)
-- Fetch top tracks/artists
-- Build top albums from track albums
-- Bind data into existing tabs
+- ✅ Fetch profile (`/v1/me`)
+- ✅ Fetch top tracks/artists
+- ✅ Build top albums from track albums (names only)
+- ✅ Bind data into existing tabs
 
 ### Deliverable
-Android app shows real Spotify profile and top lists.
+Android app shows real Spotify profile and top lists with data-driven UI.
 
 ---
 

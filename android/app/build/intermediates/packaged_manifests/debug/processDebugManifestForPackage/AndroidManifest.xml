@@ -9,6 +9,7 @@
         android:targetSdkVersion="35" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <permission
         android:name="com.kayanzify.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"

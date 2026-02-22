@@ -4,9 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Base64
+import com.kayanzify.network.TokenDataStore
 import java.io.IOException
 import java.security.MessageDigest
 import java.security.SecureRandom
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.FormBody
@@ -54,14 +58,23 @@ object SpotifyAuth {
     fun launchAuth(context: Context) {
         val newCodeVerifier = generateCodeVerifier()
         codeVerifier = newCodeVerifier
+        // persist verifier in prefs so we can read it later if process died
+        context.getSharedPreferences("spotify_prefs", Context.MODE_PRIVATE)
+            .edit().putString("code_verifier", newCodeVerifier).apply()
         val codeChallenge = generateCodeChallenge(newCodeVerifier)
         val url = getAuthorizeUrl(codeChallenge)
+        android.util.Log.d("SpotifyAuth", "Launching auth url: $url")
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         context.startActivity(intent)
     }
 
     fun exchangeCodeForToken(context: Context, code: String, onTokenReceived: (String?) -> Unit) {
-        val verifier = codeVerifier
+        var verifier = codeVerifier
+        if (verifier == null) {
+            // try to restore from prefs
+            verifier = context.getSharedPreferences("spotify_prefs", Context.MODE_PRIVATE)
+                .getString("code_verifier", null)
+        }
         if (verifier == null) {
             onTokenReceived(null)
             return
@@ -102,11 +115,17 @@ object SpotifyAuth {
     }
 
     private fun saveAccessToken(context: Context, token: String) {
+        // keep legacy preference for quick synchronous reads
         val sharedPrefs = context.getSharedPreferences("spotify_prefs", Context.MODE_PRIVATE)
         sharedPrefs.edit().putString("access_token", token).apply()
+        // also persist via DataStore for modern usage
+        CoroutineScope(Dispatchers.IO).launch {
+            TokenDataStore.saveToken(context, token)
+        }
     }
 
     fun getAccessToken(context: Context): String? {
+        // synchronous fallback; DataStore is used elsewhere for async retrieval
         val sharedPrefs = context.getSharedPreferences("spotify_prefs", Context.MODE_PRIVATE)
         return sharedPrefs.getString("access_token", null)
     }

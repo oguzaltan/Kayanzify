@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.kayanzify.app-mergeDebugResources-46:/values-v21/values-v21.xml",
+            "outputFile": "com.kayanzify.app-mergeDebugResources-44:/values-v21/values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.3.1\\transforms\\841be799169f32ceefd341e29756c42e\\workspace\\transformed\\core-1.15.0\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\fhdwalt\\.gradle\\caches\\9.3.1\\transforms\\c40d4deb329950b4db8828f3fde1a357\\workspace\\transformed\\core-1.15.0\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",

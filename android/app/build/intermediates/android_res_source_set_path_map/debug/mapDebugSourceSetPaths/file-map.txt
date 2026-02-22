@@ -42,10 +42,9 @@ com.kayanzify.app-lifecycle-runtime-compose-release-40 C:\Users\fhdwalt\.gradle\
 com.kayanzify.app-savedstate-ktx-1.2.1-41 C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\f5c3abec47254cfcf55ad9d94a977c97\workspace\transformed\savedstate-ktx-1.2.1\res
 com.kayanzify.app-runtime-saveable-release-42 C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\f8f9c30059fcc4f7818ec88d00a4a6e7\workspace\transformed\runtime-saveable-release\res
 com.kayanzify.app-lifecycle-viewmodel-savedstate-2.8.7-43 C:\Users\fhdwalt\.gradle\caches\9.3.1\transforms\fa5c5bcb2351b5935f91832482a02037\workspace\transformed\lifecycle-viewmodel-savedstate-2.8.7\res
-com.kayanzify.app-resValues-44 C:\Users\fhdwalt\Desktop\Kayanzify\android\app\build\generated\res\resValues\debug
-com.kayanzify.app-updated_navigation_xml-45 C:\Users\fhdwalt\Desktop\Kayanzify\android\app\build\generated\updated_navigation_xml\debug
-com.kayanzify.app-packageDebugResources-46 C:\Users\fhdwalt\Desktop\Kayanzify\android\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.kayanzify.app-packageDebugResources-47 C:\Users\fhdwalt\Desktop\Kayanzify\android\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.kayanzify.app-debug-48 C:\Users\fhdwalt\Desktop\Kayanzify\android\app\build\intermediates\merged_res\debug\mergeDebugResources
-com.kayanzify.app-debug-49 C:\Users\fhdwalt\Desktop\Kayanzify\android\app\src\debug\res
-com.kayanzify.app-main-50 C:\Users\fhdwalt\Desktop\Kayanzify\android\app\src\main\res
+com.kayanzify.app-updated_navigation_xml-44 C:\Users\fhdwalt\Desktop\Kayanzify\android\app\build\generated\updated_navigation_xml\debug
+com.kayanzify.app-packageDebugResources-45 C:\Users\fhdwalt\Desktop\Kayanzify\android\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.kayanzify.app-packageDebugResources-46 C:\Users\fhdwalt\Desktop\Kayanzify\android\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.kayanzify.app-debug-47 C:\Users\fhdwalt\Desktop\Kayanzify\android\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.kayanzify.app-debug-48 C:\Users\fhdwalt\Desktop\Kayanzify\android\app\src\debug\res
+com.kayanzify.app-main-49 C:\Users\fhdwalt\Desktop\Kayanzify\android\app\src\main\res
