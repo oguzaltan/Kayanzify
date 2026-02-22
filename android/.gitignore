@@ -1,0 +1,20 @@
+# Folders and files to ignore
+.gradle/
+.idea/
+build/
+capture.keystore
+local.properties
+
+# Android Studio generated files
+*.apk
+*.ap_
+*.aab
+*.jar
+*.war
+*.ear
+
+# Mac files
+.DS_Store
+
+# Intellij files
+*.iml
